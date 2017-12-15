@@ -54,6 +54,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Geometry\Graphic3D.cs" />
+    <Compile Include="Geometry\Icosahedron.cs" />
     <Compile Include="Geometry\Matrix.cs" />
     <Compile Include="Geometry\Mesh.cs" />
     <Compile Include="Geometry\Tetrahedron.cs" />

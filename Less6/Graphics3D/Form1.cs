@@ -10,7 +10,7 @@ namespace Graphics3D
         {
             get
             {
-                return sceneView1.Mesh;
+                return sceneView4.Mesh;
             }
             set
             {
@@ -27,13 +27,17 @@ namespace Graphics3D
         public Form1()
         {
             InitializeComponent();
-            CurrentMesh = new Tetrahedron(1f); 
-            sceneView1.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0, Transformations.OrthogonalProjection());
-            sceneView2.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0, Transformations.OrthogonalProjection()
-                * Transformations.RotateY(Math.PI / 2));
-            sceneView3.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0, Transformations.OrthogonalProjection()
-                * Transformations.RotateX(-Math.PI / 2));
-            camera = new Camera(new Vertex(0, 0, 0), Math.PI / 4, -Math.PI / 4, Transformations.OrthogonalProjection());
+            CurrentMesh = new Tetrahedron(0.5);
+            sceneView1.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0,
+                Transformations.OrthogonalProjection());//XOY
+            sceneView2.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0,
+                Transformations.RotateY(-Math.PI / 2)
+                * Transformations.OrthogonalProjection());//YOZ
+            sceneView3.ViewCamera = new Camera(new Vertex(0, 0, 0), 0, 0,
+                Transformations.RotateX(Math.PI / 2)
+                * Transformations.OrthogonalProjection());//XOZ
+            camera = new Camera(new Vertex(0, 0, 0), Math.PI / 4, -Math.PI / 4,
+                        Transformations.OrthogonalProjection());//Изометрическая
             sceneView4.ViewCamera = camera;
         }
 
@@ -55,8 +59,7 @@ namespace Graphics3D
             double scalingX = (double)numericUpDown1.Value;
             double scalingY = (double)numericUpDown2.Value;
             double scalingZ = (double)numericUpDown3.Value;
-            CurrentMesh.Apply(
-                Transformations.Scale(scalingX, scalingY, scalingZ));
+            CurrentMesh.Apply(Transformations.Scale(scalingX, scalingY, scalingZ));
             RefreshScenes();
         }
 
@@ -76,8 +79,7 @@ namespace Graphics3D
             double translatingX = (double)numericUpDown7.Value;
             double translatingY = (double)numericUpDown8.Value;
             double translatingZ = (double)numericUpDown9.Value;
-            CurrentMesh.Apply(
-                Transformations.Translate(translatingX, translatingY, translatingZ));
+            CurrentMesh.Apply(Transformations.Translate(translatingX, translatingY, translatingZ));
             RefreshScenes();
         }
 
@@ -108,71 +110,75 @@ namespace Graphics3D
         private void RotateAroundLine(object sender, EventArgs e)
         {
             Vertex a = new Vertex(
-                (double)numericUpDownPoint1X.Value, 
-                (double)numericUpDownPoint1Y.Value, 
+                (double)numericUpDownPoint1X.Value,
+                (double)numericUpDownPoint1Y.Value,
                 (double)numericUpDownPoint1Z.Value);
             Vertex b = new Vertex(
-                (double)numericUpDownPoint2X.Value, 
-                (double)numericUpDownPoint2Y.Value, 
+                (double)numericUpDownPoint2X.Value,
+                (double)numericUpDownPoint2Y.Value,
                 (double)numericUpDownPoint2Z.Value);
             var angle = DegToRad((double)numericUpDownAngle.Value);
             CurrentMesh.Apply(Transformations.RotateAroundLine(a, b, angle));
             RefreshScenes();
         }
-        
-        private void SceneKeyUp(object sender, KeyEventArgs e)
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (e.KeyCode)
+            double delta = 0.3;
+			double kTranslate = 0.1;
+            switch (keyData)
             {
-                case Keys.Up:
-                    camera.AngleX += 0.5;
-                    break;
-                case Keys.Down:
-                    camera.AngleX -= 0.5;
-                    break;
-                case Keys.Left:
-                    camera.AngleY += 0.5;
-                    break;
-                case Keys.Right:
-                    camera.AngleY -= 0.5;
-                    break;
-                case Keys.W:
-                    camera.Position *= Transformations.Translate(0, 0, -0.3);
-                    break;
-                case Keys.S:
-                    camera.Position *= Transformations.Translate(0, 0, 0.3);
-                    break;
-                case Keys.A:
-                    camera.Position *= Transformations.Translate(-0.3, 0, 0);
-                    break;
-                case Keys.D:
-                    camera.Position *= Transformations.Translate(0.3, 0, 0);
-                    break;
+                case Keys.Oemplus: camera.Position *= Transformations.Translate(kTranslate * camera.Forward); break;
+                case Keys.OemMinus: camera.Position *= Transformations.Translate(kTranslate * camera.Backward); break;
+                case Keys.S: camera.Position *= Transformations.Translate(kTranslate * camera.Up); break;
+                case Keys.D: camera.Position *= Transformations.Translate(kTranslate * camera.Left); break;
+                case Keys.W: camera.Position *= Transformations.Translate(kTranslate * camera.Down); break;
+                case Keys.A: camera.Position *= Transformations.Translate(kTranslate * camera.Right); break;
+                case Keys.Left: camera.AngleY -= delta; break;
+                case Keys.Right: camera.AngleY += delta; break;
+                case Keys.Up: camera.AngleX += delta; break;
+                case Keys.Down: camera.AngleX -= delta; break;
             }
             RefreshScenes();
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+    
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rB = (RadioButton)sender;
+            if(rB.Checked && rB == radioButtonIzPr)
+            {
+                radioButtonPerPr.Checked = false;
+                camera = new Camera(new Vertex(0, 0, 0), Math.PI / 4, -Math.PI / 4,
+                        Transformations.OrthogonalProjection());
+                sceneView4.ViewCamera = camera;
+                RefreshScenes();
+            }
+            if (rB.Checked && rB == radioButtonPerPr)
+            {
+                radioButtonIzPr.Checked = false;
+                Matrix projection = Transformations.PerspectiveProjection(-0.1, 0.1, -0.1, 0.1, 0.1, 20);
+                camera = new Camera(new Vertex(1, 1, 1), Math.PI / 4, -Math.PI / 4, projection);
+                sceneView4.ViewCamera = camera;
+                RefreshScenes();
+            }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void radioButtonPolyh_CheckedChanged(object sender, EventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            string progName = comboBox.SelectedItem.ToString(); 
-            switch (progName)
+            RadioButton rB = (RadioButton)sender;
+            if (rB.Checked && rB == radioButtonTetrah)
             {
-                case "Перспективная":
-                    Matrix projection = Transformations.PerspectiveProjection
-                        (-0.1, 0.1, -0.1, 0.1, 0.1, 20);
-                    camera = new Camera(new Vertex(1, 1, 1), Math.PI / 4, 
-                        -Math.Atan(1 / Math.Sqrt(3)), projection);
-                    sceneView4.ViewCamera = camera;
-                    RefreshScenes();
-                    break;
-                case "Изометрическая":
-                    camera = new Camera(new Vertex(0, 0, 0), Math.PI / 4, -Math.PI / 4, 
-                        Transformations.OrthogonalProjection());
-                    sceneView4.ViewCamera = camera;
-                    RefreshScenes();
-                    break;
-                default: break;
+                radioButtonIcosah.Checked = false;
+                CurrentMesh = new Tetrahedron(0.5);
+                RefreshScenes();
+            }
+            if (rB.Checked && rB == radioButtonIcosah)
+            {
+                radioButtonTetrah.Checked = false;
+                CurrentMesh = new Icosahedron(0.5);
+                RefreshScenes();
             }
         }
     }

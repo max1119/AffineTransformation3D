@@ -21,6 +21,7 @@ namespace Graphics3D
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            if (null == Mesh) return;
             e.Graphics.Clear(SystemColors.Control);
             e.Graphics.DrawLines(Pens.Black, new Point[]
                 {
@@ -31,13 +32,16 @@ namespace Graphics3D
                     new Point(1, 1)
                 });
             if (null == Mesh) return;
-            var graphics3D = new Graphic3D(e.Graphics, ViewCamera.Transformation, Width, Height);
-            var x = new Vertex(1, 0, 0);
-            var y = new Vertex(0, 1, 0);
-            var z = new Vertex(0, 0, 1);
-            graphics3D.DrawLine(new Vertex(0, 0, 0), x, new Pen(Color.FromArgb(255, 200, 0, 0), 2));
-            graphics3D.DrawLine(new Vertex(0, 0, 0), y, new Pen(Color.FromArgb(255, 0, 200, 0), 2));
-            graphics3D.DrawLine(new Vertex(0, 0, 0), z, new Pen(Color.FromArgb(255, 0, 0, 200), 2));
+            var graphics3D = new Graphic3D(e.Graphics, ViewCamera.ViewProjection, Width, Height);
+            var x = new Vertex(0.8, 0, 0);
+            var y = new Vertex(0, 0.8, 0);
+            var z = new Vertex(0, 0, 0.8);
+            graphics3D.DrawLine(new Vertex(0, 0, 0), x, new Pen(Color.Red, 3));
+            
+            graphics3D.DrawLine(new Vertex(0, 0, 0), y, new Pen(Color.Green, 3));
+            
+            graphics3D.DrawLine(new Vertex(0, 0, 0), z, new Pen(Color.Blue, 3));
+            
             Mesh.Draw(graphics3D);
         }
     }

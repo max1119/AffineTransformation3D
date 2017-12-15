@@ -30,6 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButtonIzPr = new System.Windows.Forms.RadioButton();
+            this.radioButtonPerPr = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
@@ -71,16 +77,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.sceneView4 = new Graphics3D.SceneView();
             this.sceneView3 = new Graphics3D.SceneView();
             this.sceneView2 = new Graphics3D.SceneView();
             this.sceneView1 = new Graphics3D.SceneView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButtonTetrah = new System.Windows.Forms.RadioButton();
+            this.radioButtonIcosah = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
@@ -101,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoint1Y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoint1X)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -109,15 +116,16 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1000, 605);
+            this.tabControl1.Size = new System.Drawing.Size(1000, 700);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.sceneView4);
             this.tabPage1.Controls.Add(this.sceneView3);
             this.tabPage1.Controls.Add(this.sceneView2);
@@ -126,10 +134,74 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(992, 579);
+            this.tabPage1.Size = new System.Drawing.Size(992, 674);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Преобразования";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButtonIzPr);
+            this.panel1.Controls.Add(this.radioButtonPerPr);
+            this.panel1.Location = new System.Drawing.Point(600, 302);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(253, 35);
+            this.panel1.TabIndex = 59;
+            // 
+            // radioButtonIzPr
+            // 
+            this.radioButtonIzPr.AutoSize = true;
+            this.radioButtonIzPr.Checked = true;
+            this.radioButtonIzPr.Location = new System.Drawing.Point(18, 8);
+            this.radioButtonIzPr.Name = "radioButtonIzPr";
+            this.radioButtonIzPr.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonIzPr.TabIndex = 58;
+            this.radioButtonIzPr.TabStop = true;
+            this.radioButtonIzPr.Text = "Изометрическая";
+            this.radioButtonIzPr.UseVisualStyleBackColor = true;
+            this.radioButtonIzPr.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // radioButtonPerPr
+            // 
+            this.radioButtonPerPr.AutoSize = true;
+            this.radioButtonPerPr.Location = new System.Drawing.Point(135, 8);
+            this.radioButtonPerPr.Name = "radioButtonPerPr";
+            this.radioButtonPerPr.Size = new System.Drawing.Size(104, 17);
+            this.radioButtonPerPr.TabIndex = 57;
+            this.radioButtonPerPr.Text = "Перспективная";
+            this.radioButtonPerPr.UseVisualStyleBackColor = true;
+            this.radioButtonPerPr.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(772, 357);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label15.Size = new System.Drawing.Size(54, 25);
+            this.label15.TabIndex = 56;
+            this.label15.Text = "XOZ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(464, 357);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 25);
+            this.label14.TabIndex = 55;
+            this.label14.Text = "YOZ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(161, 357);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 25);
+            this.label13.TabIndex = 54;
+            this.label13.Text = "XOY";
             // 
             // tableLayoutPanel1
             // 
@@ -789,79 +861,35 @@
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 211);
+            this.label11.Location = new System.Drawing.Point(25, 211);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.Size = new System.Drawing.Size(43, 13);
             this.label11.TabIndex = 47;
-            this.label11.Text = "Прямая1";
+            this.label11.Text = "Точка1";
             // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(20, 244);
+            this.label12.Location = new System.Drawing.Point(25, 244);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 48;
-            this.label12.Text = "Прямая2";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Изометрическая",
-            "Перспективная"});
-            this.comboBox1.Location = new System.Drawing.Point(724, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 53;
-            this.comboBox1.Text = "Изометрическая";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(160, 300);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 25);
-            this.label13.TabIndex = 54;
-            this.label13.Text = "XOY";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(463, 300);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 25);
-            this.label14.TabIndex = 55;
-            this.label14.Text = "YOZ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(771, 300);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label15.Size = new System.Drawing.Size(54, 25);
-            this.label15.TabIndex = 56;
-            this.label15.Text = "XOZ";
+            this.label12.Text = "Точка2";
             // 
             // sceneView4
             // 
-            this.sceneView4.Location = new System.Drawing.Point(651, 54);
+            this.sceneView4.Location = new System.Drawing.Point(518, 17);
             this.sceneView4.Mesh = null;
             this.sceneView4.Name = "sceneView4";
-            this.sceneView4.Size = new System.Drawing.Size(280, 242);
+            this.sceneView4.Size = new System.Drawing.Size(413, 269);
             this.sceneView4.TabIndex = 52;
             this.sceneView4.Text = "sceneView4";
             this.sceneView4.ViewCamera = null;
             // 
             // sceneView3
             // 
-            this.sceneView3.Location = new System.Drawing.Point(651, 328);
+            this.sceneView3.Location = new System.Drawing.Point(652, 385);
             this.sceneView3.Mesh = null;
             this.sceneView3.Name = "sceneView3";
             this.sceneView3.Size = new System.Drawing.Size(278, 242);
@@ -871,7 +899,7 @@
             // 
             // sceneView2
             // 
-            this.sceneView2.Location = new System.Drawing.Point(353, 328);
+            this.sceneView2.Location = new System.Drawing.Point(354, 385);
             this.sceneView2.Mesh = null;
             this.sceneView2.Name = "sceneView2";
             this.sceneView2.Size = new System.Drawing.Size(280, 242);
@@ -881,7 +909,7 @@
             // 
             // sceneView1
             // 
-            this.sceneView1.Location = new System.Drawing.Point(44, 328);
+            this.sceneView1.Location = new System.Drawing.Point(45, 385);
             this.sceneView1.Mesh = null;
             this.sceneView1.Name = "sceneView1";
             this.sceneView1.Size = new System.Drawing.Size(280, 242);
@@ -889,20 +917,54 @@
             this.sceneView1.Text = "sceneView1";
             this.sceneView1.ViewCamera = null;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.radioButtonTetrah);
+            this.panel2.Controls.Add(this.radioButtonIcosah);
+            this.panel2.Location = new System.Drawing.Point(155, 302);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(191, 35);
+            this.panel2.TabIndex = 62;
+            // 
+            // radioButtonTetrah
+            // 
+            this.radioButtonTetrah.AutoSize = true;
+            this.radioButtonTetrah.Checked = true;
+            this.radioButtonTetrah.Location = new System.Drawing.Point(18, 8);
+            this.radioButtonTetrah.Name = "radioButtonTetrah";
+            this.radioButtonTetrah.Size = new System.Drawing.Size(73, 17);
+            this.radioButtonTetrah.TabIndex = 58;
+            this.radioButtonTetrah.TabStop = true;
+            this.radioButtonTetrah.Text = "Тетраэдр";
+            this.radioButtonTetrah.UseVisualStyleBackColor = true;
+            this.radioButtonTetrah.CheckedChanged += new System.EventHandler(this.radioButtonPolyh_CheckedChanged);
+            // 
+            // radioButtonIcosah
+            // 
+            this.radioButtonIcosah.AutoSize = true;
+            this.radioButtonIcosah.Location = new System.Drawing.Point(97, 8);
+            this.radioButtonIcosah.Name = "radioButtonIcosah";
+            this.radioButtonIcosah.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonIcosah.TabIndex = 57;
+            this.radioButtonIcosah.Text = "Икосаэдр";
+            this.radioButtonIcosah.UseVisualStyleBackColor = true;
+            this.radioButtonIcosah.CheckedChanged += new System.EventHandler(this.radioButtonPolyh_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 604);
+            this.ClientSize = new System.Drawing.Size(980, 661);
             this.Controls.Add(this.tabControl1);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Graphics 3D";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SceneKeyUp);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
@@ -924,6 +986,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoint1Y)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoint1X)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAngle)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -977,10 +1041,15 @@
         private SceneView sceneView4;
         private SceneView sceneView3;
         private SceneView sceneView2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButtonIzPr;
+        private System.Windows.Forms.RadioButton radioButtonPerPr;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton radioButtonTetrah;
+        private System.Windows.Forms.RadioButton radioButtonIcosah;
     }
 }
 

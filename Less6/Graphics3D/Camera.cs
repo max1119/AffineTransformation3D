@@ -1,4 +1,5 @@
 ﻿using Graphics3D.Geometry;
+using System;
 
 namespace Graphics3D
 {
@@ -9,23 +10,20 @@ namespace Graphics3D
         public double AngleX { get; set; }
         public Matrix Projection { get; set; }
 
-        public Vertex Direction
-        {
-            get
-            {
-                return new Vertex(0, 0, -1)
-                    *Transformations.RotateY(AngleY)
-                    * Transformations.RotateX(AngleX);
-            }
-        }
+        public Vertex Forward { get { return new Vertex(-Math.Sin(AngleY), Math.Sin(AngleX), -Math.Cos(AngleY)); } }
+        public Vertex Left { get { return new Vertex(-Math.Sin(AngleY + Math.PI / 2), 0, -Math.Cos(AngleY + Math.PI / 2)); } }
+        public Vertex Up { get { return Vertex.CrossProduct(Forward, Left); } }
+        public Vertex Right { get { return -Left; } }
+        public Vertex Backward { get { return -Forward; } }
+        public Vertex Down { get { return -Up; } }
 
-        public Matrix Transformation
+        public Matrix ViewProjection
         {
             get
             {
-                return Transformations.Translate(-Position.X, -Position.Y, -Position.Z)
-                    * Transformations.RotateY(AngleY)
-                    * Transformations.RotateX(AngleX)
+                return Transformations.Translate(-Position)
+                    * Transformations.RotateY(-AngleY)
+                    * Transformations.RotateX(-AngleX)
                     * Projection;
             }
         }

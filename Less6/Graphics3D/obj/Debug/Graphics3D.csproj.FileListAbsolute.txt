@@ -7,3 +7,12 @@ D:\4 курс\Комп Графика\Less6\Graphics3D\bin\Debug\Graphics3D.pdb
 D:\4 курс\Комп Графика\Less6\Graphics3D\obj\Debug\Graphics3D.exe
 D:\4 курс\Комп Графика\Less6\Graphics3D\obj\Debug\Graphics3D.pdb
 D:\4 курс\Комп Графика\Less6\Graphics3D\obj\Debug\Graphics3D.Form1.resources
+D:\_Desktop\Graphics3D\Less6\Graphics3D\bin\Debug\Graphics3D.exe.config
+D:\_Desktop\Graphics3D\Less6\Graphics3D\bin\Debug\Graphics3D.exe
+D:\_Desktop\Graphics3D\Less6\Graphics3D\bin\Debug\Graphics3D.pdb
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.csprojResolveAssemblyReference.cache
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.Form1.resources
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.Properties.Resources.resources
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.csproj.GenerateResource.Cache
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.exe
+D:\_Desktop\Graphics3D\Less6\Graphics3D\obj\Debug\Graphics3D.pdb

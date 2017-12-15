@@ -17,6 +17,68 @@ namespace Graphics3D.Geometry
             W = w;
         }
 
+        public static Vertex operator *(double x, Vertex v)
+        {
+            for (int i = 0; i < 4; ++i)
+                v[i] *= x;
+            return v;
+        }
+
+        public static Vertex operator *(Vertex v, double x)
+        {
+            return x * v;
+        }
+
+        public static Vertex operator /(Vertex v, double x)
+        {
+            return v * (1 / x);
+        }
+
+        public static Vertex operator +(double x, Vertex v)
+        {
+            return v + x;
+        }
+
+        public static Vertex operator +(Vertex v, double x)
+        {
+            for (int i = 0; i < 4; ++i)
+                v[i] += x;
+            return v;
+        }
+
+        public static Vertex operator -(Vertex v, double x)
+        {
+            return v + (-x);
+        }
+
+        public static Vertex operator -(double x, Vertex v)
+        {
+            return v + (-x);
+        }
+
+        public static Vertex operator -(Vertex v)
+        {
+            return -1 * v;
+        }
+
+        // Скалярное произведение векторов
+        public static double DotProduct(Vertex u, Vertex v)
+        {
+            double result = 0;
+            for (int i = 0; i < 3; ++i)
+                result += u[i] * v[i];
+            return result;
+        }
+
+        // Векторное произведение векторов
+        public static Vertex CrossProduct(Vertex u, Vertex v)
+        {
+            return new Vertex(
+                u[1] * v[2] - u[2] * v[1],
+                u[2] * v[0] - u[0] * v[2],
+                u[0] * v[1] - u[1] * v[0]);
+        }
+
         public static Vertex operator *(Vertex v, Matrix m)
         {
             var result = v;

@@ -12,8 +12,8 @@ namespace Graphics3D.Geometry
                 new double[,]
                 {
                     { 1, 0, 0, 0 },
-                    { 0, cos, -sin, 0 },
-                    { 0, sin, cos, 0 },
+                    { 0, cos, sin, 0 },
+                    { 0, -sin, cos, 0 },
                     { 0, 0, 0, 1 }
                 });
         }
@@ -25,9 +25,9 @@ namespace Graphics3D.Geometry
             return new Matrix(
                 new double[,]
                 {
-                    { cos, 0, sin, 0 },
+                    { cos, 0, -sin, 0 },
                     { 0, 1, 0, 0 },
-                    { -sin, 0, cos, 0 },
+                    { sin, 0, cos, 0 },
                     { 0, 0, 0, 1 }
                 });
         }
@@ -39,8 +39,8 @@ namespace Graphics3D.Geometry
             return new Matrix(
                 new double[,]
                 {
-                    { cos, -sin, 0, 0 },
-                    { sin, cos, 0, 0 },
+                    { cos, sin, 0, 0 },
+                    { -sin, cos, 0, 0 },
                     { 0, 0, 1, 0 },
                     { 0, 0, 0, 1 }
                 });
@@ -55,6 +55,11 @@ namespace Graphics3D.Geometry
                     { 0, 0, fz, 0 },
                     { 0, 0, 0, 1 }
                 });
+        }
+
+        public static Matrix Translate(Vertex v)
+        {
+            return Translate(v.X, v.Y, v.Z);
         }
 
         public static Matrix Translate(double dx, double dy, double dz)
@@ -117,14 +122,13 @@ namespace Graphics3D.Geometry
                 });
         }
 
-        public static Matrix RotateAroundPoint(Vertex point, 
-            double angleX, double angleY, double angleZ)
+        public static Matrix RotateAroundPoint(Vertex point, double angleX, double angleY, double angleZ)
         {
-            return Translate(-point.X, -point.Y, -point.Z)
+            return Translate(-point)
                 * RotateX(angleX)
                 * RotateY(angleY)
                 * RotateZ(angleZ)
-                * Translate(point.X, point.Y, point.Z);
+                * Translate(point);
         }
 
         public static Matrix RotateAroundLine(Vertex a, Vertex b, double angle)
@@ -132,15 +136,15 @@ namespace Graphics3D.Geometry
             var dx = b.X - a.X;
             var dy = b.Y - a.Y;
             var dz = b.Z - a.Z;
-            var angleY = 0 == dx ? 0 : -Math.Atan(dz / dx);
-            var angleZ = 0 == dx ? Math.PI / 2 : Math.Atan(dy / dx);
-            return Translate(-a.X, -a.Y, -a.Z)
+            var angleY = -Math.Atan2(dz, dx);
+            var angleZ = Math.Atan2(dy, dx);
+            return Translate(-a)
                 * RotateZ(angleZ)
                 * RotateY(angleY)
                 * RotateX(angle)
                 * RotateY(-angleY)
                 * RotateZ(-angleZ)
-                * Translate(a.X, a.Y, a.Z);
+                * Translate(a);
         }
     }
 }
